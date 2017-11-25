@@ -40,7 +40,7 @@ import { Chart } from "chart.js";
 import { AlumnoServiceProvider } from '../providers/alumno-service/alumno-service';
 import { AsistenciasProvider } from '../providers/asistencias/asistencias';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
-
+import { Push } from "@ionic-native/push";
 
 var firebaseAuth  = {
   apiKey: "AIzaSyBjrQu2x_3cZjv1Tdvw_TIYxBMAJ2VQU_M",
@@ -108,7 +108,8 @@ var firebaseAuth  = {
     LoginServiceProvider,
     AlumnoServiceProvider,
     AsistenciasProvider,
-    BarcodeScanner
+    BarcodeScanner,
+    Push
   ]
 })
 export class AppModule {}
