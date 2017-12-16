@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-import { IonicPage, NavController, NavParams, ModalController, ModalOptions, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ModalOptions, AlertController, PopoverController } from 'ionic-angular';
 
 import { AlumnoServiceProvider } from "../../providers/alumno-service/alumno-service";
+import { ProfesorServiceProvider } from "../../providers/profesor-service/profesor-service";
 
 import { File,FileEntry } from "@ionic-native/file";
 import { FilePath } from "@ionic-native/file-path";
@@ -21,29 +22,72 @@ export class ListaAlumnosComponent implements OnInit {
 
   private foto:string;
   private listado:Array<string>;
+  private listadoProfesores:Array<string>;
+  private date:number = new Date().getDay();
+  private dia:string = '';
+
+  @Input() correo:string;
+  @Input() nombre:string;
+  @Input() perfil:string;
+
+  private profesorSelect:string = '';
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
     private alumnoDB:AlumnoServiceProvider, public modalCtrl:ModalController,
     public file:File, public fileChooser:FileChooser, public filePath:FilePath,
-    public alertCtrl:AlertController
+    public alertCtrl:AlertController, public popoverCtrl:PopoverController,
+    private profesorDB:ProfesorServiceProvider
 
   ) {}
 
 
   ngOnInit(){
+    console.log(this.profesorSelect);
+    switch (this.date) {
+      case 1:
+          this.dia = 'Lunes';
+      break;
+      case 2:
+          this.dia = 'Martes';
+      break;
+      case 3:
+          this.dia = 'Miércoles';
+      break;
+      case 4:
+          this.dia = 'Jueves';
+      break;
+      case 5:
+          this.dia = 'Viernes';
+      break;
+      case 6:
+          this.dia = 'Sábado';
+      break;
+      case 7:
+          this.dia = 'Domingo';
+      break;
+
+      default:
+      break;
+    }
+
+    console.log(this.dia);
     this.listado = new Array<string>();
+    this.listadoProfesores = new Array<string>();
+
     this.foto="";
     this.alumnoDB.getAlumnosLista().subscribe(lista=>{
       this.listado = lista;
       console.log('lista alumnos: ', this.listado);
-    })
+    });
+    this.listadoProfesores = this.profesorDB.getProfesoresPorDia();
+
+    console.log(this.listadoProfesores);
+    console.log(this.correo);
+    console.log(this.nombre);
+    console.log(this.perfil);
   }
 
-
-  descargarArchivoAlumnos(){
-    this.navCtrl.push('FilesPage');
-  }
 
   abrirModalView(alumno){
     console.log(alumno);
@@ -58,17 +102,44 @@ export class ListaAlumnosComponent implements OnInit {
   }
 
 
-  private cargarArchivos(){
+  seleccionarProfesor(value){
+    console.log(value);
+    console.log(this.profesorSelect);
+    console.log(this.devolverMateria());
+  }
 
+  private cargarArchivos(){
+      if (this.perfil=='administrador' || this.perfil=='administrativo') {
+          if (this.profesorSelect == '') {
+            let alerta = this.alertCtrl.create({
+                title:'Error',
+                message: 'Seleccione un profesor y materia para cargar el listado'
+            });
+            alerta.present();
+
+          }else {
             this.fileChooser.open().then(path=>{
               this.filePath.resolveNativePath(path).then(nativePath=>{
                     this.file.readAsText(this.extraerPath(nativePath), this.extraerNombreArchivo(nativePath)).then(texto=>{
                         this.procesarContenidoCSV(texto);
-                    });
-              });
+                    })
+              })
 
-            });
+            })
           }
+      }else{
+         this.fileChooser.open().then(path=>{
+              this.filePath.resolveNativePath(path).then(nativePath=>{
+                    this.file.readAsText(this.extraerPath(nativePath), this.extraerNombreArchivo(nativePath)).then(texto=>{
+
+                        this.procesarContenidoCSV(texto);
+                    })
+
+              })
+          })
+      }
+
+  }
 
       private procesarContenidoCSV(_texto:string){
               let campoLegajo:string='';
@@ -99,10 +170,14 @@ export class ListaAlumnosComponent implements OnInit {
                       break;
                       case 3:
                           let alumno:Alumno = new Alumno();
+                          let materia:Array<string> = new Array<string>();
+                          materia.push(this.devolverMateria().trim());
                           alumno.setNombre(campoNombre);
                           alumno.setLegajo(campoLegajo);
                           alumno.setHorario(campoHorario);
                           alumno.setPerfil('alumno');
+                          alumno.setMateria(materia);
+
                           this.alumnoDB.guardarAlumno(alumno);
 
                           cont = 0;
@@ -113,7 +188,7 @@ export class ListaAlumnosComponent implements OnInit {
                     }//fin switch
                   }//fin if
                 }//fin for
-                this.navCtrl.pop();
+                //this.navCtrl.pop();
       }
 
           private extraerPath(_path:string):string{
@@ -143,6 +218,12 @@ export class ListaAlumnosComponent implements OnInit {
           }
 
 
+          private devolverMateria(){
+            let profesorSelectArray = this.profesorSelect.split(":");
+            let materiaSelectIdx:number =profesorSelectArray.length - 1;
+            let materiaSelectStr:string = profesorSelectArray[materiaSelectIdx];
 
+            return materiaSelectStr;
+          }
 
 }

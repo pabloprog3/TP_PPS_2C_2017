@@ -1,5 +1,6 @@
 
     <ion-item class="fondo">
+
         <p> <img (click)="addNuevoAlumno()" src="assets/imgs/add.png" width="40" height="40" align="left">
             <img (click)="cargarArchivos()" src="assets/imgs/excel.png" width="40" height="40" align="right">
         </p>
@@ -15,7 +16,21 @@
             </ion-row-->
         </ion-grid>
     </ion-item>
-    <img src="assets/imgs/linea.png" width="40" height="10">
+
+    <ion-item>
+        <ion-label>Elegir profesor día actual: {{dia}}</ion-label>
+        <ion-select [(ngModel)]="profesorSelect" (ngModelChange)="seleccionarProfesor($event)" >
+          <ion-option *ngFor="let profesor of listadoProfesores">
+            {{profesor.profesor}} Materia: {{profesor.materia}}
+          </ion-option>
+        </ion-select>
+    </ion-item>
+
+
+    <img src="assets/imgs/Linea.png" width="40" height="10">
+
+
+
     <ion-list>
       <ion-item (click)="abrirModalView(alumno)"  class="fondo" *ngFor="let alumno of listado">
 

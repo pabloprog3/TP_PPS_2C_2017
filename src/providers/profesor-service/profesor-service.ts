@@ -106,7 +106,7 @@ export class ProfesorServiceProvider {
 
 
   public getProfesoresPorDia(){
-    let profesorMateris:Array<string> = new Array<string>();
+    let profesorMateris:Array<any> = new Array<any>();
     let dia:string=this.getDiaSemana();
     console.log(dia);
     this.db.list('/profesores').subscribe(lista=>{
@@ -118,26 +118,43 @@ export class ProfesorServiceProvider {
           this.db.list('/materias').subscribe(listaMaterias=>{
             listaMaterias.forEach(_materia => {
               console.log(_materia);
-              console.log( _materia.turnos.mañana);
+              console.log( _materia.turnos);
+              console.log( _materia.turnos.mañana); //ok
+              console.log( _materia.turnos.noche); //ok
               let turnoMañanaStr:string =  _materia.turnos.mañana
               let turnoMañanaArray:string[] = turnoMañanaStr.split(" ");
-              let turnoTardeStr:string =  _materia.turnos.tarde
-              let turnoTardeArray:string[] = turnoMañanaStr.split(" ");
+              let turnoTardeStr:string =  _materia.turnos.noche;
+
+              let turnoTardeArray:string[];
+
+              if (turnoTardeStr != undefined) {
+                turnoTardeArray  = turnoTardeStr.split(" ");
+
+              }
               turnoMañanaStr = turnoMañanaArray[0].toLowerCase();
-              turnoTardeStr = turnoTardeArray[0].toLowerCase();
-              console.log(materia);
-              console.log(turnoMañanaStr);
-              console.log(turnoTardeStr);
-              console.log(_materia);
-              if ((turnoMañanaStr == dia || turnoTardeStr == dia) && (materia == _materia.nombre)) {
-                console.log('siiii');
-                console.log(dia);
-                console.log(profesor.nombre);
+              if (turnoTardeStr != undefined) {
+                turnoTardeStr = turnoTardeArray[0].toLowerCase();
+
+              }
+
+              let diaMan:string[] = turnoMañanaStr.split(" ");
+              let diaSplitMan = diaMan[0];
+
+              let diaTar:string[]
+              let diaSplitTar
+              if (turnoTardeStr != undefined) {
+                diaTar = turnoTardeStr.split(" ");
+                diaSplitTar = diaTar[0];
+
+              }
+
+              if (materia == _materia.nombre && (dia == diaSplitMan || dia == diaSplitTar)) {
+
                 let obj = {
                   'profesor': profesor.nombre,
                   'materia' : materia
                 }
-                profesorMateris.push(JSON.stringify(obj));//(profesor.nombre);
+                profesorMateris.push(obj);//(profesor.nombre);
                 console.log(profesorMateris);
 
               }

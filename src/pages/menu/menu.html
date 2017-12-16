@@ -40,16 +40,17 @@
                 [isLoginSocial]="datos.loginSocial"
       ></perfil>
 
-      <files *ngSwitchCase="'archAlumnos'">
-
-      </files>
+      <files *ngSwitchCase="'archAlumnos'"></files>
 
     <div *ngIf="perfil=='administrador'  || perfil=='administrativo'">
       <lista-profesores *ngSwitchCase="'abmProfesores'"></lista-profesores>
     </div >
 
     <div *ngIf="perfil=='administrador'  || perfil=='administrativo' || perfil=='profesor'">
-      <lista-alumnos *ngSwitchCase="'abmAlumnos'"></lista-alumnos>
+      <lista-alumnos [perfil]="datos.perfil" *ngSwitchCase="'abmAlumnos'"
+                     [correo]="datos.correo"
+                     [nombre]="datos.nombre"
+      ></lista-alumnos>
     </div >
 
 
