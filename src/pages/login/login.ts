@@ -11,6 +11,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from "firebase";
 
 import { MenuPage } from "../menu/menu";
+import { AlumnosFormPage } from '../alumnos-form/alumnos-form';
+import { ConfiguPage } from '../configu/configu';
+
 
 @IonicPage()
 @Component({
@@ -31,6 +34,11 @@ export class LoginPage {
     perfil:'alumno',
     loggedin:false
   }
+  fondo="fondoProfesional";
+  boton="botonProfesional";
+  boton1="botonProfesional1";
+  titulo="tituloProfesional";
+  
   private ingresa:boolean=false;
 
   constructor(public navCtrl: NavController,public toastCtrl: ToastController, public navParams: NavParams,
@@ -43,7 +51,14 @@ export class LoginPage {
     this.correo = "";
     this.passw = null;
     this.loginUsuario = new Usuario();
+    if (this.navParams.get('fondo') != undefined || this.navParams.get('fondo') != null) {
+      this.fondo = this.navParams.get('fondo');
+      this.boton = this.navParams.get('boton');
+      this.boton1 = this.navParams.get('boton1');
+      this.titulo = this.navParams.get('titulo');
+
   }
+}
   toastOk(x) {
     let toast = this.toastCtrl.create({
       message: x + ' correctamente',
@@ -72,6 +87,9 @@ export class LoginPage {
         dismissOnPageChange: true,
         spinner:"bubbles"
       });
+
+      this.navCtrl.push(MenuPage,{'fondo':this.fondo,'boton':this.boton,'boton1':this.boton1,'titulo':this.titulo});
+      
       loading.present();
       this.loginUsuario.setCorreo(this.correo);
       this.loginUsuario.setClave(this.passw);
@@ -170,7 +188,14 @@ export class LoginPage {
       loading.present();
 
       this.navCtrl.push('AlumnosFormPage');
+      
     }
+
+    conf(){
+      this.navCtrl.push(ConfiguPage,{'logeo':this.correo});
+      
+    }
+
 
     salir(){
       this.platform.exitApp();

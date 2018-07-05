@@ -10,6 +10,7 @@ import { FileChooser } from "@ionic-native/file-chooser";
 //import { FileOpener } from "@ionic-native/file-opener";
 import { Alumno } from "../../clases/alumno";
 
+
 import { ProfesorServiceProvider } from "../../providers/profesor-service/profesor-service";
 
 
@@ -23,6 +24,11 @@ export class MenuPage {
   private datos:any;
   private perfil:string='';
   private segmentAlumno:string;
+  fondo="fondoProfesional";
+  boton="botonProfesional";
+  boton1="botonProfesional1";
+  titulo="tituloProfesional";
+  private logueo:string;
 
 
 
@@ -36,15 +42,18 @@ export class MenuPage {
 
   ionViewDidLoad() {
 
-
+    console.log(this.navParams.data);
     this.datos = JSON.parse(this.navParams.data);
 
     this.perfil = this.datos["perfil"];
     console.log(this.perfil);
     console.log(this.profesorDB.getProfesoresPorDia());
+   
   }
 
+  
 
+  
  /* private irAPerfil():void{
 
     const loading = this.loadingCtrl.create({
@@ -78,6 +87,7 @@ export class MenuPage {
     this.navCtrl.push("ProfesoresFormPage");
   }
 
+  
   private irABMProfesores(){
 
     this.navCtrl.push("ListaProfesoresPage");
@@ -210,8 +220,6 @@ export class MenuPage {
 
   }
 
-
-
-
+  
 
 }

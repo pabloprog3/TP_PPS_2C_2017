@@ -27,6 +27,9 @@ export class AlumnosFormPage {
   private materiaCheck:Array<string>;
   private alumno:Alumno;
   private passw:string;
+  fondo="fondoProfesional";
+  boton="botonProfesional";
+  titulo="tituloProfesional";
 
   private storageRef = firebase.storage().ref();
 
@@ -43,7 +46,12 @@ export class AlumnosFormPage {
     });
     this.materiaCheck = new Array<string>();
     this.alumno = new Alumno();
+    if (this.navParams.get('fondo') != undefined || this.navParams.get('fondo') != null) {
+      this.fondo = this.navParams.get('fondo');
+      this.boton = this.navParams.get('boton');
+      this.titulo = this.navParams.get('titulo');
   }
+}
 
 
   ingresarAlumno(){

@@ -8,22 +8,23 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { MateriasPage } from '../pages/materias/materias';
-import { MateriaPrincipalPage } from '../pages/materia-principal/materia-principal';
-import { PersonasPage } from '../pages/personas/personas';
-import { PersonasabmPage } from '../pages/personasabm/personasabm';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {EncuestaPage} from '../pages/encuesta/encuesta';
-import {GraficosPage} from '../pages/graficos/graficos';
+//import { MateriaPrincipalPage } from '../pages/materia-principal/materia-principal';
+//import { PersonasPage } from '../pages/personas/personas';
+//import { PersonasabmPage } from '../pages/personasabm/personasabm';
+//import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+//import {EncuestaPage} from '../pages/encuesta/encuesta';
+//import {GraficosPage} from '../pages/graficos/graficos';
 import { AsistenciasPage } from '../pages/asistencias/asistencias';
-import { PerfilPage } from "../pages/perfil/perfil";
-import { ListadoAlumnosPage } from "../pages/listado-alumnos/listado-alumnos";
-import { MostrarAsistenciasPage } from "../pages/mostrar-asistencias/mostrar-asistencias";
-import { ProfesorAsistenciaPage } from "../pages/profesor-asistencia/profesor-asistencia";
-import { EncuestasHomePage } from "../pages/encuestas-home/encuestas-home";
-import { EnviarEncuestaPage } from "../pages/enviar-encuesta/enviar-encuesta";
-import { EncuestaDetPage } from "../pages/encuesta-det/encuesta-det";
+//import { PerfilPage } from "../pages/perfil/perfil";
+//import { ListadoAlumnosPage } from "../pages/listado-alumnos/listado-alumnos";
+//import { MostrarAsistenciasPage } from "../pages/mostrar-asistencias/mostrar-asistencias";
+//import { ProfesorAsistenciaPage } from "../pages/profesor-asistencia/profesor-asistencia";
+//import { EncuestasHomePage } from "../pages/encuestas-home/encuestas-home";
+//import { EnviarEncuestaPage } from "../pages/enviar-encuesta/enviar-encuesta";
+//import { EncuestaDetPage } from "../pages/encuesta-det/encuesta-det";
 import { ConsultarBajaModifPageModule } from "../pages/consultar-baja-modif/consultar-baja-modif.module";
 import { MenuPageModule } from "../pages/menu/menu.module";
+import {ConfiguPage} from '../pages/configu/configu';
 
 
 ////////SERVICIOS
@@ -41,12 +42,13 @@ import { AngularFireAuthModule }  from 'angularfire2/auth';
 import { Camera } from '@ionic-native/camera';
 import { PersonasServiceProvider } from '../providers/personas-service/personas-service';
 import { LoginServiceProvider } from '../providers/login-service/login-service';
-import { Chart } from "chart.js";
+//import { Chart } from "chart.js";
 import { AlumnoServiceProvider } from '../providers/alumno-service/alumno-service';
 import { AsistenciasProvider } from '../providers/asistencias/asistencias';
 import { IonicStorageModule } from '@ionic/storage';
 
-import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
+//import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner} from '@ionic-native/barcode-scanner';
 import { ProfesorServiceProvider } from '../providers/profesor-service/profesor-service';
 import { EncuestasDataProvider } from '../providers/encuestas-data/encuestas-data';
 import { DatePipe } from '@angular/common';
@@ -94,6 +96,7 @@ const cloudSettings: CloudSettings = {
     MyApp,
     HomePage,
     LoginPage,
+    ConfiguPage,
     //MateriasPage,
     //MateriaPrincipalPage,
     //PersonasPage,
@@ -130,6 +133,7 @@ const cloudSettings: CloudSettings = {
     MyApp,
     HomePage,
     LoginPage,
+    ConfiguPage,
     //MateriasPage,
     //MateriaPrincipalPage,
     //PersonasPage,

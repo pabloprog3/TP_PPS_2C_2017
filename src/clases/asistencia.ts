@@ -2,11 +2,11 @@ export class Asistencia{
     
     private legajo:string;
     private nombre:string;
-    private clave:number;
+    //private clave:number;
     private perfil:string;
     private correo:string;
     private foto:string;
-    private loginSocial:boolean;
+    //private loginSocial:boolean;
 
       constructor(){
         this.legajo="";

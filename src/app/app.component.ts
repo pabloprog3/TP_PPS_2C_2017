@@ -12,9 +12,10 @@ import {PerfilPage} from '../pages/perfil/perfil';
 import {EncuestaPage} from '../pages/encuesta/encuesta';
 import {AsistenciasPage} from '../pages/asistencias/asistencias';
 import { MostrarAsistenciasPage } from "../pages/mostrar-asistencias/mostrar-asistencias";
-import { ProfesorAsistenciaPage } from "../pages/profesor-asistencia/profesor-asistencia";
+//import { ProfesorAsistenciaPage } from "../pages/profesor-asistencia/profesor-asistencia";
 import { EncuestasHomePage } from "../pages/encuestas-home/encuestas-home";
 import { EncuestaDetPage } from "../pages/encuesta-det/encuesta-det";
+import {ConfiguPage} from '../pages/configu/configu';
 
 import {Push,PushToken} from '@ionic/cloud-angular';
 
@@ -35,7 +36,8 @@ export class MyApp {
         {titulo: 'Inicio', component:LoginPage},
         //{titulo: 'Perfil', component:PerfilPage},
         {titulo: 'Asistencias', component:AsistenciasPage},
-        {titulo: 'Encuesta', component:EncuestasHomePage}
+        {titulo: 'Encuesta', component:EncuestasHomePage},
+        {titulo: 'Configuración', component:ConfiguPage}
 
 
     ];

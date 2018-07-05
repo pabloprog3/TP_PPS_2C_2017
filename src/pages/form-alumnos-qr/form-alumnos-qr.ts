@@ -18,12 +18,13 @@ export class FormAlumnosQrPage {
   private perfil:string="";
   private listaMaterias:any[];
   private listaPorAlumno:any[];
-  private listaPorProfesor:any[];
-  private objCode:{};
+  //private listaPorProfesor:any[];
+  //private objCode:{};
   private listado:string = "";
-  private dato:string="";
+  //private dato:string="";
   private tipo:string;
   private listaMateriasProf:any[];
+ 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public barcodeScanner:BarcodeScanner, public alertCtrl:AlertController,

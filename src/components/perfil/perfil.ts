@@ -150,7 +150,7 @@ export class PerfilComponent implements OnInit, OnChanges {
 
             upload.then((snapshot=>{
                   let objJson = {'foto':snapshot.downloadURL, 'activa':false}
-                  let arr:Array<string>=new Array<string>();
+                  //let arr:Array<string>=new Array<string>();
 
                   this.fotos.push(JSON.parse(JSON.stringify(objJson)));
                   this.dbPersonas.guardarLinkFoto(snapshot.downloadURL, this.legajo, this.perfil, this.fotos);

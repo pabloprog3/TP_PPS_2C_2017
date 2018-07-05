@@ -5,7 +5,7 @@ import { Camera, CameraOptions } from "@ionic-native/camera";
 import { Profesor } from "../../clases/profesor";
 
 import {AngularFireDatabase} from 'angularfire2/database';
-import {storage, initializeApp}  from 'firebase';
+//import {storage, initializeApp}  from 'firebase';
 import * as firebase from 'firebase';
 
 import { PersonasServiceProvider } from "../../providers/personas-service/personas-service";

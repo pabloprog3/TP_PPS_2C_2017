@@ -1,17 +1,20 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { LectorQrComponent } from './lector-qr/lector-qr';
-import { IonicModule, IonicPageModule } from "ionic-angular";
+import { IonicModule } from "ionic-angular";
 import { PerfilComponent } from './perfil/perfil';
 import { ListaProfesoresComponent } from './lista-profesores/lista-profesores';
 import { ListaAlumnosComponent } from './lista-alumnos/lista-alumnos';
 import { FilesComponent } from './files/files';
+
 @NgModule({
 	declarations: [
     LectorQrComponent,
     PerfilComponent,
     ListaProfesoresComponent,
     ListaAlumnosComponent,
-    FilesComponent
+    FilesComponent,
+    
+    
   ],
 	imports: [
     IonicModule
@@ -21,7 +24,8 @@ import { FilesComponent } from './files/files';
     PerfilComponent,
     ListaProfesoresComponent,
     ListaAlumnosComponent,
-    FilesComponent
+    FilesComponent,
+   
 
   ],
   schemas:[NO_ERRORS_SCHEMA]

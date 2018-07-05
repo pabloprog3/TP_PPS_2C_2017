@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { File } from "@ionic-native/file";
-import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
-
+//import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 @Component ({
     selector: 'page-File',

@@ -2,11 +2,13 @@ import { NgModule,  CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/co
 import { IonicPageModule } from 'ionic-angular';
 import { MenuPage } from './menu';
 
+
 import { ComponentsModule } from "../../components/components.module";
 
 @NgModule({
   declarations: [
     MenuPage,
+    
   ],
   imports: [
     IonicPageModule.forChild(MenuPage),
